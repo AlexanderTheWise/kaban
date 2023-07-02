@@ -1,0 +1,23 @@
+@tailwind components;
+
+@layer components {
+  .btn {
+    @apply capitalize flex items-center font-bold transition-colors cursor-pointer outline-none;
+  }
+
+  .btn-big {
+    @apply btn rounded-3xl text-[15px] gap-1;
+  }
+
+  .btn-small {
+    @apply btn rounded-[20px];
+  }
+
+  .btn-primary-big {
+    @apply text-white btn-big bg-bgBtnPrimary hover:bg-bgBtnPrimaryHov;
+  }
+
+  .btn-secondary-first {
+    @apply text-[#635fc7] bg-transparent hover:bg-bgBtnSecond;
+  }
+}
