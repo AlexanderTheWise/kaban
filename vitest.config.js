@@ -8,5 +8,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "lcov"],
     },
+    environment: "jsdom",
+    setupFiles: "src/setupTests.ts",
   },
 })

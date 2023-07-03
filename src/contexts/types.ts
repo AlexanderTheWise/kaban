@@ -1,7 +1,8 @@
+import React from "react"
 import { ModalChildren } from "./GlobalModalProvider"
 
 export interface ChildrenProps {
-  children: JSX.Element | JSX.Element[]
+  children: React.JSX.Element | React.JSX.Element[]
 }
 
 export interface ThemeContextStructure {
