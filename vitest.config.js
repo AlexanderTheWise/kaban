@@ -9,6 +9,6 @@ export default defineConfig({
       reporter: ["text", "lcov"],
     },
     environment: "jsdom",
-    setupFiles: "src/setupTests.ts",
+    setupFiles: "src/testUtils/setupTests.ts",
   },
 })

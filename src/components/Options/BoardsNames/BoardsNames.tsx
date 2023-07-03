@@ -17,9 +17,7 @@ export default function BoardsNames() {
   const handleOnBoardChange = (name: string) => {
     dispatch(changeCurrentBoardActionCreator(name))
 
-    if (window.innerWidth < 768) {
-      hideModal()
-    }
+    hideModal()
   }
 
   return (
