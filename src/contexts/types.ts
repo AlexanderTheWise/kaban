@@ -1,5 +1,5 @@
 import React from "react"
-import { ModalChildren } from "./GlobalModalProvider"
+import { ModalChildren } from "./Modal/GlobalModalProvider"
 
 export interface ChildrenProps {
   children: React.JSX.Element | React.JSX.Element[]

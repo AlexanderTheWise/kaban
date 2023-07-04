@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react"
+import { ChildrenProps } from "../../contexts/types"
 
-interface ModalProps {
-  children: JSX.Element | JSX.Element[]
-}
-
-export default function Modal({ children }: ModalProps) {
+export default function Modal({ children }: ChildrenProps) {
   const dialog = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {

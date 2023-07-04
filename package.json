@@ -56,6 +56,7 @@
       "prettier"
     ],
     "rules": {
+      "testing-library/prefer-presence-queries": "off",
       "prettier/prettier": "error",
       "react/jsx-no-target-blank": "off"
     }

@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ThemeContext } from "../contexts"
-import { fireEvent, render, screen } from "@testing-library/react"
-import ThemeProvider from "./ThemeProvider"
+import { fireEvent, screen } from "@testing-library/react"
+import renderWithProviders from "../../testUtils/renderWithProviders"
 
 const TestComponent = () => {
   const { darkModeOn, toggleDarkMode } = useContext(ThemeContext)
@@ -13,12 +13,7 @@ const TestComponent = () => {
   )
 }
 
-const setup = () =>
-  render(
-    <ThemeProvider>
-      <TestComponent />
-    </ThemeProvider>,
-  )
+const setup = () => renderWithProviders(<TestComponent />)
 
 describe("Given a <ThemeProvider>", () => {
   describe("When it renders with TestComponent as child component", () => {
