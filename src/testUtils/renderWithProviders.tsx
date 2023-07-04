@@ -3,6 +3,7 @@ import { store } from "../redux/store"
 import { ChildrenProps } from "../contexts/types"
 import ThemeProvider from "../contexts/Theme/ThemeProvider"
 import { RenderOptions, render } from "@testing-library/react"
+import GlobalModalProvider from "../contexts/Modal/GlobalModalProvider"
 
 const renderWithProviders = (
   ui: React.ReactElement,
@@ -11,7 +12,9 @@ const renderWithProviders = (
   const Wrapper = ({ children }: ChildrenProps) => {
     return (
       <Provider store={store}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <GlobalModalProvider>{children}</GlobalModalProvider>
+        </ThemeProvider>
       </Provider>
     )
   }
