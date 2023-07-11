@@ -1,17 +1,13 @@
 import { useMemo, useState } from "react"
 import Options from "../../components/Options/Options"
-import {
-  ChildrenProps,
-  ModalTypes,
-  ShowModal,
-  ModalState,
-  ModalChildrenComponent,
-} from "../types"
+import { ChildrenProps, ModalTypes, ShowModal, ModalState } from "../types"
 import Modal from "../../components/Modal/Modal"
 import { ModalContext } from "../contexts"
+import TaskDetail from "../../components/TaskDetail/TaskDetail"
 
 export const ModalChildren = {
   [ModalTypes.Options]: Options,
+  [ModalTypes.TaskDetail]: TaskDetail,
 }
 
 export default function GlobalModalProvider({ children }: ChildrenProps) {
@@ -45,7 +41,7 @@ export default function GlobalModalProvider({ children }: ChildrenProps) {
       return null
     }
 
-    const ChildElement: ModalChildrenComponent =
+    const ChildElement: React.ComponentType<any> =
       ModalChildren[modalStore.modalType]
 
     return (
