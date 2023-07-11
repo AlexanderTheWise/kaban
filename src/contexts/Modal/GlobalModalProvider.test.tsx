@@ -43,6 +43,8 @@ describe("Given <GlobalModalProvider>", () => {
 
       expect(screen.getByRole("dialog", { hidden: true })).toBeInTheDocument()
 
+      window.innerWidth = 767
+
       fireEvent.click(
         screen.getByRole("radio", { name: "Roadmap", hidden: true }),
       )
