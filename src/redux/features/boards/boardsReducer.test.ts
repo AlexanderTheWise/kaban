@@ -1,6 +1,7 @@
 import {
   boardsReducer,
   changeCurrentBoardActionCreator,
+  changeTaskStatusActionCreator,
   initialState,
   toggleSubtaskActionCreator,
 } from "./boardsSlice"
@@ -37,6 +38,33 @@ describe("Given a boards reducer function", () => {
         ?.subtasks.find(({ title }) => title === coordenates[2])!
 
       expect(resultedSubtask.isCompleted).toBeFalsy()
+    })
+  })
+
+  describe("When it receives a changeTaskStatus action with payload ['Todo', 'Build UI for onboarding flow', 'Doing']", () => {
+    test("It should delete 'Build UI for onboarding flow' task from 'Todo' column, add it to 'Doing' column and change task status to 'Doing'", () => {
+      const coordenates = ["Todo", "Build UI for onboarding flow", "Doing"]
+
+      const resultedCurrentBoard = boardsReducer(
+        initialState,
+        changeTaskStatusActionCreator(coordenates),
+      ).boards.find(({ name }) => name === initialState.currentBoard)!
+
+      const resultedPreviousColumnTasks = resultedCurrentBoard.columns.find(
+        ({ name }) => name === coordenates[0],
+      )!.tasks
+
+      expect(
+        resultedPreviousColumnTasks.find(
+          ({ title }) => title === coordenates[1],
+        )!,
+      ).toBeUndefined()
+
+      const resultedTask = resultedCurrentBoard.columns
+        .find(({ name }) => name === coordenates[2])!
+        .tasks.find(({ title }) => title === coordenates[1])!
+
+      expect(resultedTask).toHaveProperty("status", coordenates[2])
     })
   })
 })

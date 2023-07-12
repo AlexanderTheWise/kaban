@@ -29,6 +29,31 @@ const boardsSlice = createSlice({
 
       subtask.isCompleted = !subtask.isCompleted
     },
+    changeTaskStatus: (currentState, action: PayloadAction<string[]>) => {
+      const [currentStatus, taskTitle, nextStatus] = action.payload
+
+      const currentBoard = currentState.boards.find(
+        ({ name }) => name === currentState.currentBoard,
+      )!
+
+      const taskColumn = currentBoard.columns.find(
+        ({ name }) => name === currentStatus,
+      )!
+
+      const nextColumn = currentBoard.columns.find(
+        ({ name }) => name === nextStatus,
+      )!
+
+      const task = taskColumn.tasks.find(({ title }) => title === taskTitle)!
+
+      task.status = nextStatus
+
+      nextColumn.tasks.unshift(task)
+
+      taskColumn.tasks = taskColumn.tasks.filter(
+        ({ title }) => title !== taskTitle,
+      )
+    },
   },
 })
 
@@ -36,4 +61,5 @@ export const boardsReducer = boardsSlice.reducer
 export const {
   changeCurrentBoard: changeCurrentBoardActionCreator,
   toggleSubtask: toggleSubtaskActionCreator,
+  changeTaskStatus: changeTaskStatusActionCreator,
 } = boardsSlice.actions
