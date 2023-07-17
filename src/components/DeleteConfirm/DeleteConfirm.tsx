@@ -1,5 +1,4 @@
-import { useContext } from "react"
-import { ModalContext } from "../../contexts/contexts"
+import { useModalContext } from "../../contexts/contexts"
 import { ModalTypes } from "../../contexts/types"
 
 interface DeleteConfirmProps {
@@ -11,7 +10,7 @@ export default function DeleteConfirm({
   itemToDelete,
   deleteAction,
 }: DeleteConfirmProps) {
-  const { modalType, hideModal } = useContext(ModalContext)
+  const { modalType, hideModal } = useModalContext()
 
   const onActionDelete = () => {
     deleteAction()

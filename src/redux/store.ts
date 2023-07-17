@@ -1,7 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { PreloadedState, configureStore } from "@reduxjs/toolkit"
 import { boardsReducer } from "./features/boards/boardsSlice"
+import { BoardsState } from "../types"
 
-export const store = configureStore({ reducer: boardsReducer })
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: boardsReducer,
+    preloadedState,
+  })
+}
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const store = setupStore()
+
+export type RootState = BoardsState
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore["dispatch"]

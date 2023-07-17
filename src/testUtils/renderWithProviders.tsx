@@ -1,13 +1,26 @@
+import React from "react"
+import { render } from "@testing-library/react"
+import type { RenderOptions } from "@testing-library/react"
+import type { PreloadedState } from "@reduxjs/toolkit"
 import { Provider } from "react-redux"
-import { store } from "../redux/store"
-import { ChildrenProps } from "../contexts/types"
-import ThemeProvider from "../contexts/Theme/ThemeProvider"
-import { RenderOptions, render } from "@testing-library/react"
 import GlobalModalProvider from "../contexts/Modal/GlobalModalProvider"
+import ThemeProvider from "../contexts/Theme/ThemeProvider"
+import { AppStore, RootState, setupStore } from "../redux/store"
+import { ChildrenProps } from "../contexts/types"
+import { initialState } from "../redux/features/boards/boardsSlice"
+
+interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
+  preloadedState?: PreloadedState<RootState>
+  store?: AppStore
+}
 
 const renderWithProviders = (
   ui: React.ReactElement,
-  renderOptions?: Omit<RenderOptions, "queries">,
+  {
+    preloadedState = { ...initialState },
+    store = setupStore(preloadedState),
+    ...renderOptions
+  }: ExtendedRenderOptions = {},
 ) => {
   const Wrapper = ({ children }: ChildrenProps) => {
     return (
@@ -19,7 +32,7 @@ const renderWithProviders = (
     )
   }
 
-  return { ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }
 
 export default renderWithProviders
