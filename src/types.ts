@@ -21,6 +21,28 @@ export interface BoardsState {
   currentBoard: string
 }
 
+export interface TaskDetails {
+  title: string
+  description: string
+  subtasks: string[]
+  status: string
+}
+export interface AllCoordenates {
+  currentBoard: Board
+  column?: Column
+  task?: Task
+  subtask?: Subtask
+}
+
+export interface Errors {
+  titleError: boolean
+  itemError: boolean
+}
+export interface BoardDetails {
+  boardName: string
+  columns: string[]
+}
+
 type Boards = Board[]
 type Subtasks = Subtask[]
 type Tasks = Task[]
