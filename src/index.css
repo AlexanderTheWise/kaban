@@ -10,21 +10,34 @@
   --bg-sc: #ffffff;
   --bg-thr: #e9effa;
 
+  --bord-sc: #e4ebfa;
+  --bord-inp: hsl(216, 9%, 57%, 0.25);
+
   --bg-btn-pr: hsl(var(--common));
   --bg-btn-pr-hov: #a8a4ff;
   --bg-btn-sc: hsl(var(--common), 0.1);
   --bg-btn-sc-hov: var(--common-hov);
   --bg-btn-del: #ea5555;
   --bg-btn-del-hov: #ff9898;
+
+  --text-dark-white: black;
+  --text-gray-white: #828fa3;
 }
 
 .dark {
+  --white: #ffffff;
+
   --bg-pr: #20212c;
   --bg-sc: #2b2c37;
   --bg-thr: var(--bg-sc);
 
-  --bg-btn-sc: #ffffff;
-  --bg-btn-sc-hov: #ffffff;
+  --bord-sc: #3e3f4e;
+
+  --bg-btn-sc: var(--white);
+  --bg-btn-sc-hov: var(--white);
+
+  --text-dark-white: var(--white);
+  --text-gray-white: var(--white);
 }
 
 *,
@@ -38,7 +51,16 @@
 }
 
 body {
-  @apply bg-bgPrimary;
+  @apply bg-bgPrimary overflow-hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.improve-scroll {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 @media (min-width: 768px) {
