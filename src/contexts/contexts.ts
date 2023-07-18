@@ -1,4 +1,4 @@
-import { createContext } from "react"
+import { createContext, useContext } from "react"
 import { ModalContextStructure, ThemeContextStructure } from "./types"
 
 export const ThemeContext = createContext<ThemeContextStructure>({
@@ -11,3 +11,5 @@ export const ModalContext = createContext<ModalContextStructure>({
   showModal: () => {},
   modalType: null,
 })
+
+export const useModalContext = () => useContext(ModalContext)
