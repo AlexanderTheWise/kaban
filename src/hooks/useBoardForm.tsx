@@ -71,11 +71,6 @@ export default function useBoardForm(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault()
-
-    if (Object.values(errors).some((value) => value)) {
-      return
-    }
-
     boardAction(boardDetails)
   }
 

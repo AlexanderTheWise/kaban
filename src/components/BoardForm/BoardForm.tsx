@@ -33,7 +33,9 @@ export default function BoardForm({
 
   return (
     <form>
-      <h3 className="text-headingL text-textDarkWhite mb-6">Edit board</h3>
+      <h3 className="text-headingL text-textDarkWhite mb-6">
+        {modalType === ModalTypes.EditBoard ? "Edit" : "Add new"} board
+      </h3>
 
       <h4 className="form-subtitle mb-2">Board Name</h4>
       <FormTextInput
@@ -69,7 +71,11 @@ export default function BoardForm({
         + Add new column
       </button>
 
-      <button onClick={submitChanges} className="btn-primary-small w-full mt-6">
+      <button
+        disabled={Object.values(errors).some((value) => value)}
+        onClick={submitChanges}
+        className="btn-primary-small w-full mt-6"
+      >
         {modalType === ModalTypes.EditBoard
           ? "Save changes"
           : "Create new board"}
