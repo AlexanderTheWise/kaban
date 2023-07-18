@@ -58,7 +58,7 @@
               "subtasks": [
                 {
                   "title": "Internal testing",
-                  "isCompleted": false
+                  "isCompleted": true
                 },
                 {
                   "title": "External testing",

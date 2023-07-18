@@ -2,22 +2,42 @@
 
 @layer components {
   .btn {
-    @apply capitalize flex items-center font-bold transition-colors cursor-pointer outline-none;
+    @apply capitalize flex items-center font-bold transition-colors cursor-pointer outline-none justify-center;
   }
 
   .btn-big {
-    @apply btn rounded-3xl text-[15px] gap-1;
+    @apply btn rounded-3xl text-headingM gap-1 h-12;
   }
 
   .btn-small {
-    @apply btn rounded-[20px];
+    @apply btn rounded-[20px] text-[13px] gap-1 h-10;
+  }
+
+  .btn-primary {
+    @apply text-white bg-bgBtnPrimary hover:bg-bgBtnPrimaryHov;
   }
 
   .btn-primary-big {
-    @apply text-white btn-big bg-bgBtnPrimary hover:bg-bgBtnPrimaryHov;
+    @apply btn-primary btn-big;
   }
 
-  .btn-secondary-first {
-    @apply text-[#635fc7] bg-transparent hover:bg-bgBtnSecond;
+  .btn-primary-small {
+    @apply btn-primary btn-small;
+  }
+
+  .btn-secondary {
+    @apply btn-small text-purple bg-bgBtnSecond hover:bg-bgBtnSecondHov;
+  }
+
+  .small-heading {
+    @apply uppercase text-headingS text-gray;
+  }
+
+  .form-subtitle {
+    @apply captitalize text-textGrayWhite text-bodyM;
+  }
+
+  .form-text-entry {
+    @apply block w-full bg-transparent rounded px-4 py-2 outline-none border-2 text-bodyL text-textDarkWhite border-bordInput;
   }
 }
