@@ -20,7 +20,11 @@ export default function DeletableTextInput({
   return (
     <div className="flex gap-4">
       <FormTextInput {...rest} />
-      <button className="btn group" onClick={deleteItem}>
+      <button
+        className="btn group"
+        aria-label={"Delete task: " + rest.value}
+        onClick={deleteItem}
+      >
         <DeleteIcon />
       </button>
     </div>

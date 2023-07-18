@@ -95,10 +95,6 @@ export default function useTaskForm(
   ) => {
     event.preventDefault()
 
-    if (Object.values(errors).some((value) => value)) {
-      return
-    }
-
     taskAction({
       ...taskDetails,
       title: taskDetails.title.trim(),

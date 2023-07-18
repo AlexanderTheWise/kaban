@@ -17,6 +17,12 @@ export default function FormTextInput({
   error,
   itemRepeated,
 }: FormTextInputProps) {
+  const text = value.trim()
+    ? itemRepeated
+      ? "Already defined"
+      : ""
+    : "Can't be empty"
+
   return (
     <div className="flex-1 relative">
       <input
@@ -32,13 +38,19 @@ export default function FormTextInput({
         }`}
       />
       {error && (
-        <span className="absolute text-red whitespace-nowrap text-[13px] right-4 top-1/2 translate-y-[-50%]">
-          {value.trim()
-            ? itemRepeated
-              ? "Already defined"
-              : ""
-            : "Can't be empty"}
-        </span>
+        <div
+          aria-label={
+            value.trim()
+              ? itemRepeated
+                ? "Already defined"
+                : ""
+              : "Can't be empty"
+          }
+          role="alert"
+          className="absolute text-red whitespace-nowrap text-[13px] right-4 top-1/2 translate-y-[-50%]"
+        >
+          {text}
+        </div>
       )}
     </div>
   )

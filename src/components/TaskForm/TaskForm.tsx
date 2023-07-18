@@ -84,7 +84,11 @@ export default function TaskForm({
         columnSelect={changeStatus}
       />
 
-      <button onClick={submitChanges} className="btn-primary-small w-full mt-6">
+      <button
+        disabled={Object.values(errors).some((value) => value)}
+        onClick={submitChanges}
+        className="btn-primary-small w-full mt-6"
+      >
         {modalType === ModalTypes.EditTask ? "Save changes" : "Create task"}
       </button>
     </form>
