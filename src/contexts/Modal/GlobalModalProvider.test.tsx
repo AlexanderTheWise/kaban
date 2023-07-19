@@ -1,12 +1,11 @@
 import { vi } from "vitest"
-import { useContext } from "react"
 import { fireEvent, screen } from "@testing-library/react"
 import renderWithProviders from "../../testUtils/renderWithProviders"
-import { ModalContext } from "../contexts"
+import { useModalContext } from "../contexts"
 import { ModalTypes } from "../types"
 
 const TestComponent = () => {
-  const { showModal } = useContext(ModalContext)
+  const { showModal } = useModalContext()
 
   const handleOnClick = () => {
     showModal(ModalTypes.Options, {})

@@ -18,7 +18,7 @@ export default function Subtasks({
       <div className="flex flex-col gap-2 mt-4 mb-6">
         {task.subtasks.map(({ title, isCompleted }) => (
           <label
-            className="subtask p-3 bg-bgPrimary flex relative items-center gap-4 font-bold hover:bg-[var(--common-hov)]"
+            className="subtask p-3 bg-bgPrimary flex before:bg-bgSecond relative items-center text-bodyM text-textDarkWhite gap-4 hover:bg-[var(--common-hov)]"
             key={title}
           >
             <input
