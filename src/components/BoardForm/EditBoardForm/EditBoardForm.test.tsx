@@ -1,8 +1,8 @@
 import { vi } from "vitest"
+import { fireEvent, screen } from "@testing-library/react"
 import { ModalContextStructure, ModalTypes } from "../../../contexts/types"
 import renderWithProviders from "../../../testUtils/renderWithProviders"
 import EditBoardForm from "./EditBoardForm"
-import { fireEvent, screen } from "@testing-library/react"
 import { boardDetails, mockModalContext } from "../../../testUtils/mocks"
 import { Column } from "../../../types"
 
@@ -93,7 +93,7 @@ describe("Given an <EditBoardForm /> component", () => {
 
       fireEvent.click(screen.getByRole("button", { name: "+ Add new column" }))
 
-      fireEvent.change(screen.getAllByLabelText("column").splice(-1)[0], {
+      fireEvent.change(screen.getAllByLabelText("column").slice(-1)[0], {
         target: { value: boardDetails.columns.slice(-1)[0] },
       })
 

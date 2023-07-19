@@ -41,11 +41,15 @@ export default function useBoardForm(
 
   const isboardNameRepeated = useCallback(
     (boardName: string) =>
-      modalType === ModalTypes.EditBoard &&
-      preloadedBoardDetails?.boardName !== boardName &&
-      boardNames.some(
-        (board) => board.toLowerCase() === boardName.toLowerCase().trim(),
-      ),
+      (modalType === ModalTypes.EditBoard &&
+        preloadedBoardDetails?.boardName !== boardName &&
+        boardNames.some(
+          (board) => board.toLowerCase() === boardName.toLowerCase().trim(),
+        )) ||
+      (modalType === ModalTypes.AddBoard &&
+        boardNames.some(
+          (board) => board.toLowerCase() === boardName.toLowerCase().trim(),
+        )),
     [boardNames, modalType, preloadedBoardDetails?.boardName],
   )
 
