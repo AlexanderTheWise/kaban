@@ -20,6 +20,12 @@
   --bg-btn-del: #ea5555;
   --bg-btn-del-hov: #ff9898;
 
+  --box-gradient: linear-gradient(
+    180deg,
+    #e9effa 0%,
+    rgba(233, 239, 250, 0.5) 100%
+  );
+
   --text-dark-white: black;
   --text-gray-white: #828fa3;
 }
@@ -35,6 +41,12 @@
 
   --bg-btn-sc: var(--white);
   --bg-btn-sc-hov: var(--white);
+
+  --box-gradient: linear-gradient(
+    180deg,
+    rgba(43, 44, 55, 0.25) 0%,
+    rgba(43, 44, 55, 0.13) 100%
+  );
 
   --text-dark-white: var(--white);
   --text-gray-white: var(--white);
@@ -61,6 +73,10 @@ body {
 .improve-scroll {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+}
+
+.box-gradient {
+  background: var(--box-gradient);
 }
 
 @media (min-width: 768px) {

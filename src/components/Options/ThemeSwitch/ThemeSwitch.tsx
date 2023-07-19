@@ -18,12 +18,12 @@ export default function ThemeSwitch() {
         <input
           aria-label={`Change the theme to ${darkModeOn ? "light" : "dark"}`}
           type="checkbox"
-          className="opacity-0 w-0 h-0 peer"
+          className="opacity-0 peer w-0 h-0 peer"
           checked={darkModeOn}
           onChange={handleOnChange}
         />
         <span
-          className="absolute rounded-xl cursor-pointer top-0 left-0 right-0 bottom-0 bg-[#635FC7] before:content-[''] 
+          className="absolute text-headingM rounded-xl cursor-pointer top-0 left-0 right-0 bottom-0 transition-color duration-300 peer-hover:bg-[#a8a4ff] bg-purple before:content-[''] 
         before:absolute before:h-3.5 before:w-3.5 before:bg-white before:left-[4px] before:bottom-[3.5px] before:rounded-full 
         before:transition-transform before:peer-checked:translate-x-[18px]"
         ></span>

@@ -34,7 +34,7 @@
   }
 
   .form-subtitle {
-    @apply captitalize text-textGrayWhite text-bodyM;
+    @apply text-textGrayWhite text-bodyM;
   }
 
   .form-text-entry {

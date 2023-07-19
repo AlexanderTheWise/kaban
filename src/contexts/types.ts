@@ -12,11 +12,14 @@ export interface ThemeContextStructure {
 
 export enum ModalTypes {
   Options,
+  TaskDetail,
+  DeleteTask,
+  EditTask,
+  CreateTask,
+  DeleteBoard,
+  EditBoard,
+  AddBoard,
 }
-
-export type ModalChildrenComponent = {
-  [K in ModalChildrenKeys]: (typeof ModalChildren)[K]
-}[ModalChildrenKeys]
 
 export interface ModalState {
   modalType: ModalTypes | null
