@@ -1,0 +1,18 @@
+.subtask:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 1px solid hsl(216.4, 15.2%, 57.5%, 0.24);
+  border-radius: 2px;
+}
+
+.subtask:has(input:checked):before {
+  background: #635fc7 url("../../assets/icon-check.svg") no-repeat center;
+  border: none;
+}
+
+.subtask:has(input:checked) {
+  color: #979797;
+  text-decoration: line-through;
+}
