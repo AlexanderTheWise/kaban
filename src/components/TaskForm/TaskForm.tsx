@@ -27,7 +27,7 @@ export default function TaskForm({
   } = useTaskForm(taskAction, modalType!, preloadedTaskDetails)
 
   return (
-    <form>
+    <form className="overflow-y-auto max-h-[calc(100vh-114px)]">
       <h3 className="text-headingL text-textDarkWhite mb-6">
         {modalType === ModalTypes.EditTask ? "Edit" : "Add new"} task
       </h3>

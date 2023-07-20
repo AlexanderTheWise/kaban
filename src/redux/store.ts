@@ -11,6 +11,10 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
 
 export const store = setupStore()
 
+store.subscribe(() => {
+  localStorage.setItem("boards", JSON.stringify(store.getState()))
+})
+
 export type RootState = BoardsState
 export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = AppStore["dispatch"]

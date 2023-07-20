@@ -49,10 +49,12 @@ const TaskDetail: React.ComponentType<TaskProps> = ({ coordenates }) => {
           editAction={showEditTaskModal}
         />
       </div>
-      <p className="text-bodyL text-gray my-6">{task.description}</p>
-      <Subtasks {...{ task, toggleSubtaskCompletition }} />
-      <h4 className="form-subtitle">Current status</h4>
-      <ColumnsDrop coordenates={coordenates} columnSelect={onChangeStatus} />
+      <div className="overflow-y-auto">
+        <p className="text-bodyL text-gray my-6">{task.description}</p>
+        <Subtasks {...{ task, toggleSubtaskCompletition }} />
+        <h4 className="form-subtitle">Current status</h4>
+        <ColumnsDrop coordenates={coordenates} columnSelect={onChangeStatus} />
+      </div>
     </div>
   )
 }

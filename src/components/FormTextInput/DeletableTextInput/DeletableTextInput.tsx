@@ -22,7 +22,7 @@ export default function DeletableTextInput({
       <FormTextInput {...rest} />
       <button
         className="btn group"
-        aria-label={"Delete task: " + rest.value}
+        aria-label={"Delete item: " + rest.value}
         onClick={deleteItem}
       >
         <DeleteIcon />

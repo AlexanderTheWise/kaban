@@ -29,8 +29,8 @@ export default function ColumnsDrop({
       aria-expanded={dropVisible}
       aria-controls="columnsOptions"
       onClick={toggleDropVisibility}
-      className={`flex justify-between cursor-pointer items-center relative text-[13px] px-4 py-2 border-2 rounded mt-2 hover:border-purple ${
-        dropVisible ? "border-purple" : ""
+      className={`flex justify-between cursor-pointer items-center relative  text-[13px] px-4 py-2 border-2 rounded mt-2 hover:border-purple ${
+        dropVisible ? "border-purple" : "border-bordInput"
       }`}
     >
       {coordenates[0]}
