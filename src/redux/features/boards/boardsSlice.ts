@@ -13,7 +13,9 @@ import {
   getCurrentBoard,
 } from "./boardsSelectors"
 
-export const initialState: BoardsState = {
+export const initialState: BoardsState = JSON.parse(
+  localStorage.getItem("boards")!,
+) ?? {
   boards,
   currentBoard: boards[0].name,
 }

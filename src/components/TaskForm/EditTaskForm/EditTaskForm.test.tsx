@@ -102,7 +102,7 @@ describe("Given an <EditTaskForm /> component", () => {
 
       expect(screen.getAllByLabelText("subtask")[0]).toHaveValue("Sign up page")
 
-      const deleteButton = screen.getByLabelText("Delete task: Sign up page")
+      const deleteButton = screen.getByLabelText("Delete item: Sign up page")
 
       fireEvent.click(deleteButton)
 

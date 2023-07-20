@@ -32,7 +32,7 @@ export default function BoardForm({
   } = useBoardForm(boardAction, modalType!, preloadedBoardDetails)
 
   return (
-    <form>
+    <form className="overflow-y-auto max-h-[calc(100vh-114px)]">
       <h3 className="text-headingL text-textDarkWhite mb-6">
         {modalType === ModalTypes.EditBoard ? "Edit" : "Add new"} board
       </h3>
