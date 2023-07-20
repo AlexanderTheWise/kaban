@@ -119,11 +119,14 @@ const boardsSlice = createSlice({
     },
     addBoard: (currentState, action: PayloadAction<BoardDetails>) => {
       const { boardName: name, columns } = action.payload
+      const isEmpty = currentState.boards.length === 0
 
       currentState.boards.push({
         name,
         columns: columns.map((name) => ({ name, tasks: [] })),
       })
+
+      currentState.currentBoard = isEmpty ? name : currentState.currentBoard
     },
   },
 })
