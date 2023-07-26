@@ -10,7 +10,6 @@ This is a solution to the [Kanban task management web app challenge on Frontend 
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Continued development](#continued-development)
 - [Author](#author)
 
 ## Overview
@@ -26,6 +25,7 @@ Users should be able to:
 - Mark subtasks as complete and move tasks between columns
 - Hide/show the board sidebar
 - Toggle the theme between light/dark modes
+- Implement drag and drop functionality
 
 ### Screenshot
 
@@ -47,10 +47,6 @@ Users should be able to:
 - Flexbox
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-
-### Continued development
-
-- Implement drag and drop functionality
 
 ## Author
 

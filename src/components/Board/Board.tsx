@@ -1,17 +1,37 @@
+import { DragDropContext, DropResult } from "react-beautiful-dnd"
 import { useModalContext } from "../../contexts/contexts"
 import { ModalTypes } from "../../contexts/types"
 import { getCurrentBoard } from "../../redux/features/boards/boardsSelectors"
-import { useAppSelector } from "../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import ColumnComp from "../Column/Column"
+import { dropTaskActionCreator } from "../../redux/features/boards/boardsSlice"
 
 interface BoardProps {
   isHidden: boolean
 }
 
 export default function BoardComp({ isHidden }: BoardProps) {
+  const dispatch = useAppDispatch()
   const currentBoard = useAppSelector((state) => getCurrentBoard(state))
 
   const { showModal } = useModalContext()
+
+  const handleOnDragEnd = (result: DropResult) => {
+    const { destination, source } = result
+
+    if (!destination) {
+      return
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return
+    }
+
+    dispatch(dropTaskActionCreator({ destination, source }))
+  }
 
   return (
     <div
@@ -29,13 +49,13 @@ export default function BoardComp({ isHidden }: BoardProps) {
     >
       {currentBoard?.columns?.length > 0 ? (
         <>
-          <ul className="flex h-full gap-6">
-            {currentBoard?.columns.map((column) => (
-              <li key={column.name}>
-                <ColumnComp columnName={column.name} />
-              </li>
-            ))}
-          </ul>
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <div className="flex h-full gap-6">
+              {currentBoard?.columns.map((column) => (
+                <ColumnComp columnName={column.name} key={column.name} />
+              ))}
+            </div>
+          </DragDropContext>
           <div
             onClick={() => {
               showModal(ModalTypes.EditBoard, {})

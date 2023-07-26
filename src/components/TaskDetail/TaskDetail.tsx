@@ -12,7 +12,9 @@ import EditOrDelete from "../EditOrDelete/EditOrDelete"
 import Subtasks from "./Subtasks/Subtasks"
 import ColumnsDrop from "../ColumnsDrop/ColumnsDrop"
 
-const TaskDetail: React.ComponentType<TaskProps> = ({ coordenates }) => {
+const TaskDetail: React.ComponentType<Omit<TaskProps, "index">> = ({
+  coordenates,
+}) => {
   const dispatch = useAppDispatch()
   const { showModal } = useModalContext()
   const task = useAppSelector((state) => selectTask(state, coordenates))
