@@ -35,7 +35,7 @@ export default function BoardComp({ isHidden }: BoardProps) {
 
   return (
     <div
-      className={`flex transition-transform mobile:w-full ${
+      className={`flex transition-transform improve-scroll will-change-transform mobile:w-full ${
         isHidden ? "" : "tablet:translate-x-[261px] desktop:translate-x-[301px]"
       } duration-500 px-4 py-6 gap-6 ${
         currentBoard?.columns?.length > 0
