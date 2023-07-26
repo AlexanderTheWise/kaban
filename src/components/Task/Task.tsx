@@ -1,26 +1,23 @@
+import React from "react"
+import {
+  DraggableProvided,
+  DraggableRubric,
+  DraggableStateSnapshot,
+} from "react-beautiful-dnd"
 import { useModalContext } from "../../contexts/contexts"
 import { ModalTypes } from "../../contexts/types"
 import { useAppSelector } from "../../redux/hooks"
 import { selectTask } from "../../redux/features/boards/boardsSelectors"
-import React from "react"
 
 export interface TaskProps {
   coordenates: string[]
 }
 
 const TaskCard = React.memo(({ coordenates }: TaskProps) => {
-  const { showModal } = useModalContext()
   const task = useAppSelector((state) => selectTask(state, coordenates))
 
-  const openTaskDetail = () => {
-    showModal(ModalTypes.TaskDetail, { coordenates })
-  }
-
   return (
-    <article
-      className="bg-bgSecond cursor-pointer group drop-shadow-md py-6 px-4 rounded-lg"
-      onClick={openTaskDetail}
-    >
+    <>
       <h3 className="text-headingM text-textDarkWhite group-hover:text-[#635fc7]">
         {task.title}
       </h3>
@@ -28,8 +25,42 @@ const TaskCard = React.memo(({ coordenates }: TaskProps) => {
         {task.subtasks.filter((task) => task.isCompleted).length} of{" "}
         {task.subtasks.length} substasks
       </p>
-    </article>
+    </>
   )
 })
 
-export default TaskCard
+const getRenderItem =
+  (columnName: string, items: string[]) =>
+  (
+    provided: DraggableProvided,
+    _: DraggableStateSnapshot,
+    rubric: DraggableRubric,
+  ) => {
+    const taskTitle = items[rubric.source.index]
+    const { showModal } = useModalContext()
+
+    const openTaskDetail = (taskTitle: string) => {
+      showModal(ModalTypes.TaskDetail, { coordenates: [columnName, taskTitle] })
+    }
+
+    return (
+      <article
+        {...provided.dragHandleProps}
+        {...provided.draggableProps}
+        className="bg-bgSecond group drop-shadow-md rounded-lg"
+        style={{
+          ...provided.draggableProps.style,
+          marginTop: "1.25rem",
+          padding: "1.5rem 1rem",
+        }}
+        ref={provided.innerRef}
+        onClick={() => {
+          openTaskDetail(taskTitle)
+        }}
+      >
+        <TaskCard coordenates={[columnName, taskTitle]} key={taskTitle} />
+      </article>
+    )
+  }
+
+export default getRenderItem

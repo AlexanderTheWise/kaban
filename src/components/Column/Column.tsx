@@ -1,7 +1,8 @@
 import React from "react"
-import TaskCard from "../Task/Task"
+import { Draggable, Droppable } from "react-beautiful-dnd"
 import { useAppSelector } from "../../redux/hooks"
 import { selectTasksTitles } from "../../redux/features/boards/boardsSelectors"
+import getRenderItem from "../Task/Task"
 
 interface ColumnProps {
   columnName: string
@@ -12,6 +13,8 @@ const ColumnComp = React.memo(({ columnName }: ColumnProps) => {
     selectTasksTitles(state, [columnName]),
   )
 
+  const renderItem = getRenderItem(columnName, tasksTitles)
+
   return (
     <div className="w-[280px]">
       <div className="flex items-center gap-3">
@@ -20,13 +23,22 @@ const ColumnComp = React.memo(({ columnName }: ColumnProps) => {
           {columnName} ({tasksTitles.length})
         </h2>
       </div>
-      <ul className="flex flex-col gap-5 mt-6">
-        {tasksTitles.map((taskTitle) => (
-          <li key={taskTitle}>
-            <TaskCard coordenates={[columnName, taskTitle]} />
-          </li>
-        ))}
-      </ul>
+      <Droppable droppableId={columnName} renderClone={renderItem}>
+        {(provided) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="mt-6"
+          >
+            {tasksTitles.map((taskTitle, index) => (
+              <Draggable draggableId={taskTitle} index={index} key={taskTitle}>
+                {renderItem}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
     </div>
   )
 })

@@ -12,6 +12,7 @@ import {
   getColumn,
   getCurrentBoard,
 } from "./boardsSelectors"
+import { DraggableLocation } from "react-beautiful-dnd"
 
 export const initialState: BoardsState = JSON.parse(
   localStorage.getItem("boards")!,
@@ -128,6 +129,32 @@ const boardsSlice = createSlice({
 
       currentState.currentBoard = isEmpty ? name : currentState.currentBoard
     },
+    dropTask: (
+      currentState,
+      action: PayloadAction<{
+        source: DraggableLocation
+        destination: DraggableLocation
+      }>,
+    ) => {
+      const { destination, source } = action.payload
+      const board = getCurrentBoard(currentState)
+
+      if (destination.droppableId === source.droppableId) {
+        const column = getColumn(board, destination.droppableId)
+
+        const task = column.tasks.splice(source.index, 1)[0]
+
+        column.tasks.splice(destination.index, 0, task)
+
+        return
+      }
+
+      const currentColum = getColumn(board, source.droppableId)
+      const task = currentColum.tasks.splice(source.index, 1)[0]
+      const nextColumn = getColumn(board, destination.droppableId)
+
+      nextColumn.tasks.splice(destination.index, 0, task)
+    },
   },
 })
 
@@ -142,4 +169,5 @@ export const {
   deleteBoard: deleteBoardActionCreator,
   editBoard: editBoardActionCreator,
   addBoard: addBoardActionCreator,
+  dropTask: dropTaskActionCreator,
 } = boardsSlice.actions
